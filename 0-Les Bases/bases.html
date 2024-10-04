@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+
+<!--===================================================================
+date :			année scolaire 2024-2025
+destination :	seconde, SNT
+====================================================================-->
+
+<!--===================================================================
+1. Récupérer les fichiers :
+	0-Bases.html, cours_style.css, chemin.png et arborescence.png
+sur Pronote et les enregistrer sur le disque dur
+2. Lire le document (pas le code HTML)
+2. Faire l'exercice à la page
+====================================================================-->
+
+
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="author" 		content="Votre professeur">
+<meta name="description" 	content="les bases, arborescence, copier-coller, ...">
+<meta name="keywords"		content="seconde, SNT, pratique">
+
+<title>Les bases</title>
+
+	<link rel="stylesheet" href="../style/cours_style.css" type="text/css">
+ 
+ 	<link rel="stylesheet" href="../style/navigation.css" type="text/css">
+
+<style>
+		/*--------------------------------------*/
+		/*               liste :                */
+		/*       Arborescence de dossiers       */
+		/*--------------------------------------*/
+
+	.tree {
+		--spacing:				1.5rem;
+		--radius:				10px;
+		--marker-bg-default:	#ddd;
+		--marker-bg-haschild:	#6b9abb;
+		line-height:			2rem;
+	}
+
+	.tree li {
+		display:		block;
+		position:		relative;
+		padding-left:	calc(2 * var(--spacing) - var(--radius) - 2px);
+	}
+
+	.tree ul {
+		margin-left:	calc(var(--radius) - var(--spacing));
+		padding-left:	0;
+	}
+
+	.tree ul li {
+		border-left:	2px solid #ddd;
+	}
+
+	.tree ul li:last-child {
+		border-color:	transparent;
+	}
+
+	.tree ul li::before {
+		content:		"";
+		display:		block;
+		position:		absolute;
+		top:			calc(var(--spacing) / -2);
+		left:			-2px;
+		width:			calc(var(--spacing) + 2px);
+		height:			calc(var(--spacing) + 1px);
+		border:			solid #ddd;
+		border-width:	0 0 2px 2px;
+	}
+
+	.tree summary {
+		display:	block;
+		cursor:		pointer;
+	}
+
+	.tree summary::marker,
+	.tree summary::-webkit-details-marker {
+		display:	none;
+	}
+
+	.tree summary:focus {
+		outline:	none;
+	}
+
+	.tree summary:focus-visible {
+		outline:	1px dotted #000;
+	}
+
+	.tree summary::before {
+		content:		"";
+		display:		block;
+		position:		absolute;
+		top:			calc(var(--spacing) / 2 - var(--radius) + 2px);
+		left:			calc(var(--spacing) - var(--radius) - 2px);
+		width:			calc(2 * var(--radius));
+		height:			calc(2 * var(--radius));
+		border-radius:	50%;
+		background:		var(--marker-bg-default);
+	}
+
+	.tree li::after {
+		content:		"";
+		display:		block;
+		position:		absolute;
+		top:			calc(var(--spacing) / 2 - var(--radius) + 2px);
+		left:			calc(var(--spacing) - var(--radius) - 2px);
+		width:			0px;
+		height:			calc(2 * var(--radius));
+		border-radius:	50%;
+		background:		var(--marker-bg-default);
+	}
+
+	.tree summary::before {
+		content:		"+";
+		z-index:		1;
+		background:		var(--marker-bg-haschild);
+		color:			#fff;
+		line-height:	calc(2 * var(--radius));
+		text-align:		center;
+	}
+
+	.tree details[open] > summary::before {
+		content:	"−";
+	}
+
+	.circle{
+		background-color:	#6b9abb;
+		color:				#fff;
+		padding-left:		2px;
+		padding-right:		2px;
+		width:				17px;
+		height:				20px;
+		text-align:			center;
+		border-radius:		75%;
+		line-height: 20px;
+	}
+
+		/*--------------------------------------*/
+		/*  2 classes d'images pour les zooms   */
+		/*       1 pour l'image originale       */
+		/*        1 pour l'image zoomée         */
+		/*--------------------------------------*/
+
+		/* box-sizing est appliqué à tout élément de la page  */
+	* {box-sizing: border-box;}
+
+	.img-zoom-container {
+		position: relative;
+	}
+	
+	.img-zoom-lens {
+		position: absolute;
+		border: 1px solid #d4d4d4;
+		/*mettez la taille de la lentille:*/
+		width: 100px;
+		height: 75px;
+	}
+
+	.img-zoom-result {
+		border: 1px solid #d4d4d4;
+		/*mettez la taille du résultat div:*/
+		width: 400px;
+		height: 300px;
+	}
+</style>
+
+
+<script>
+
+		//----------------
+		//   javascript
+		// script du zoom
+		//----------------
+function imageZoom(imgID, resultID) {
+	var img, lens, result, cx, cy;
+	img = document.getElementById(imgID);
+	result = document.getElementById(resultID);
+	/*créez la lentille:*/
+	lens = document.createElement("DIV");
+	lens.setAttribute("class", "img-zoom-lens");
+	/*mettez la lentille:*/
+	img.parentElement.insertBefore(lens, img);
+	/*calculez le ratio entre le résultat DIV and la lentille:*/
+	cx = result.offsetWidth / lens.offsetWidth;
+	cy = result.offsetHeight / lens.offsetHeight;
+	/*définissez les propriétés de fond pour le résultat DIV:*/
+	result.style.backgroundImage = "url('" + img.src + "')";
+	result.style.backgroundSize = img.width * cx + "px " + img.height * cy + "px";
+	/*Exécutez une fonction lorsque quelqu’un déplace le curseur sur l’image ou sur la lentille:*/
+	lens.addEventListener("mousemove", moveLens);
+	img.addEventListener("mousemove", moveLens);
+	/*et aussi pour les écrans tactiles:*/
+	lens.addEventListener("touchmove", moveLens);
+	img.addEventListener("touchmove", moveLens);
+	function moveLens(e) {
+		var pos, x, y;
+		/*empêchez toute autre action pouvant se produire pendant le déplacement sur l’image:*/
+		e.preventDefault();
+		/*obtenez les positions x et y du curseur:*/
+		pos = getCursorPos(e);
+		/*calculez la position de la lentille :*/
+		x = pos.x - lens.offsetWidth / 2;
+		y = pos.y - lens.offsetHeight / 2;
+		/*empêchez la lentille d’être positionnée à l’extérieur de l’image:*/
+		if (x > img.width - lens.offsetWidth) {
+			x = img.width - lens.offsetWidth;
+			}
+		if (x < 0) {
+			x = 0;
+			}
+		if (y > img.height - lens.offsetHeight) {
+			y = img.height - lens.offsetHeight;
+			}
+		if (y < 0) {
+			y = 0;
+			}
+		/*mettez la position de la lentille:*/
+		lens.style.left = x + "px";
+		lens.style.top = y + "px";
+		/*affichez ce que la lentille “voit”":*/
+		result.style.backgroundPosition = "-" + x * cx + "px -" + y * cy + "px";
+		}
+	function getCursorPos(e) {
+		var a,
+		x = 0,
+		y = 0;
+		e = e || window.event;
+		/*obtenez les positions x et y de l’image:*/
+		a = img.getBoundingClientRect();
+		/*calculez les coordonnées x et y du curseur par rapport à l’image:*/
+		x = e.pageX - a.left;
+		y = e.pageY - a.top;
+		/*considérez tout défilement de page:*/
+		x = x - window.pageXOffset;
+		y = y - window.pageYOffset;
+		return { x: x, y: y };
+		}
+	}
+
+</script>
+
+</head>
+
+
+<body>
+
+<nav role="navigation" class="primary-navigation">
+  <ul>
+    <li><a href="../index.html">Accueil</a></li>
+    <li><a href="#">Chapitres &dtrif;</a>
+      <ul class="dropdown">
+        <li><a href="../0-Les Bases/bases.html">Dossiers & fichiers</a></li>
+        <li><a href="#">Le Web</a>
+            <ul class="dropdown">
+                <li><a href="../1-Le Web/web-activite.html">Activité</a></li>
+                <li><a href="../1-Le Web/web-cours.html">Cours</a></li>
+                <li><a href="../1-Le Web/web-pratique.html">Pratique</a></li>
+            </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#">À propos</a>
+            <ul class="dropdown">
+				<li>Site pour la 206-SNT</li>
+            </ul>
+    </li>
+    <li><a href="#">Contact</a>
+            <ul class="dropdown">
+				<li>noname@nofai@nocountry</li>
+            </ul>
+    </li>
+  </ul>
+</nav>
+
+<h1>Chapitre 0<br> Les bases</h1>
+
+<p>Au fur et à mesure de votre lecture, suivez les liens et consultez les documents liés.</p>
+
+<p>
+Tout ce qui suit concerne windows 10 puisque votre ordi de la région est fourni avec ce <a href="https://www.futura-sciences.com/tech/definitions/informatique-systeme-exploitation-11820/">système d'exploitation</a> (plus de détail sur ce qu'est un  <a href="http://www.lumni.fr/video/comprendre-ce-qu-est-un-systeme-d-exploitation">système d'exploitation</a>).
+</p>
+
+<p>
+	Il est impératif d'avoir quelques bases communes :
+	<ul>
+	<li>les notions de <a href="https://www.coursinfo.fr/decouverte/windows/quest-ce-quun-dossier-un-fichier-et-une-arborescence-de-dossiers/"> dossiers, fichiers, extension de fichiers, arborescence de dossiers</a>, </li>
+	<li>la connaissance de votre <a href="https://www.coursinfo.fr/decouverte/windows/le-dossier-utilisateurs-cest-quoi/">dossier utilisateur</a>,</li>
+	<li>l'utilisation de <a href="https://www.coursinfo.fr/decouverte/windows/comment-marche-lexplorateur-de-fichiers-windows/">l'explorateur</a> de fichiers,</li>
+	<li>la <a href="https://www.coursinfo.fr/decouverte/windows/creer-dossier-manipuler-fichiers/">manipulation</a> des dossiers et des fichiers (création, suppression, copié-collé).</li>
+</ul>
+</p>
+
+	<h2>Se repérer dans le disque dur </h2>
+
+		<h3>Fichiers et dossiers</h3>
+
+			<h4>Fichiers</h4>
+<p>
+Un <em>fichier</em> est un ensemble de données binaires, enregistré dans une mémoire informatique (disque dur, clé usb, ...) et repéré par un nom.<br>
+
+On ouvre ce fichier avec le programme adapté pour en avoir la représentation (textuelle, audio, vidéo, ...) souhaitée.<br>
+</p>
+
+<p>
+Un <em>nom de fichier</em> est par exemple <samp>demo.txt</samp>.<br>
+
+Le dernier élément du nom, à partir du dernier point, s'appelle l'<em>extension</em> du fichier (ici <samp>.txt</samp>).<br>
+
+Elle indique la nature du fichier et quel programme permet de le lire.
+
+Un fichier d'extension :
+<ul>
+	<li><samp>.txt</samp> correspond à du texte brut (non formaté), il s'ouvre par exemple avec le bloc-note (<samp>notepad</samp>) de windows.</li>
+	<li><samp>.doc</samp> ou <samp>.docx</li>kbd> correspond à du texte formaté (mis en forme avec des paragraphes, de la couleur, des images, ...) écrit avec le logiciel de traitement de texte <samp>Word</samp></li>
+	<li><samp>.pdf</samp> est écrit dans le langage de description de page <samp>Portable Document Format</samp> ou <samp>PDF</samp> inventé par la société Adobe. C'est le format le plus pratique pour échanger des documents (avec textes, images, sons, animations, ...) même entre personnes dont les équipements (programmes, OS, ...) sont très différents.</li>
+	<li><samp>.jpeg</samp>, <samp>.png</samp> correspondent à des images compressées.</li>
+	<li><samp>.mp3</samp>, <samp>.flac</samp> correspondent à des sons.</li>
+	<li><samp>.mp4</samp>, <samp>.avi</samp> correspondent à des vidéos.</li>
+	<li><samp>.exe</samp> correspond à un fichier exécutable (un programme).</li>
+</ul>
+</p>
+	
+			<h4>Dossiers</h4>
+
+<p>
+Un <em>dossier</em> (ou <em>répertoire</em>) est en fait un fichier spécial (il n'a pas d'extension) dont le rôle est de regrouper des fichiers (et éventuellement d'autres dossiers).
+
+On peut le voir comme un contenant dans lequel on trouvera des fichiers, des dossiers ... ou rien.
+</p>
+
+		<h3>Explorateur de fichiers</h3>
+
+<p>C'est un programme qui nous permet de naviguer dans le disque dur, d'afficher des caractéristiques des dossiers et fichiers (contenu, date de création, taille, ...) et de manipuler les fichiers et dossiers (création, suppression, déplacement, renommage, ...).<br>
+</p>
+
+<div class="img-zoom-container" >
+	<img id="image" src="./img/arborescence.png" width="400px" alt="Arborescence">
+	<img id="zoomed" class="img-zoom-result">
+	<script>
+	// lancez l’effet de zoom:
+		imageZoom("image", "zoomed");
+	</script>
+</div>
+
+<p>
+Dans la grande zone blanche de la capture d'écran vous voyez un fichier (<samp>demo.txt</samp>) et deux dossiers (<samp>Cours</samp> et <samp>Exercices</samp>) qui sont contenus dans le dossier <samp>Calculs</samp>.
+</p>
+
+<p>Voyons des zones particulières de l'explorateur de fichiers :
+<ul>
+	<li> La barre contenant les onglets <samp>Fichier</samp>, <samp>Accueil</samp>, <samp>Partage</samp>, <samp>Affichage</samp> est la <em>barre de menu</em>.</li>
+	<li> Sous la barre de menu, vous voyez <samp>Épingler à Accès rapide</samp>, <samp>Copier</samp>, <samp>Coller</samp>, ... <br>
+	Cette zone s'appelle le <em>ruban</em>. Il donne accès à des fonctionnalités proposées par le menu sélectionné dans la barre de menu.
+	<li> La barre sous le ruban est formée à gauche des flèches permettant de naviguer dans les dossiers et à droite (<samp> > myself > Documents</samp> ...) de la <em>barre d'adresse</em>. La barre d'adresse indique le chemin vers le dossier courant (c'est celui que vous avez sélectionné, <samp>Calculs</samp> dans l'exemple).</li>
+	<li>Sous la barre d'adresse, La zone gauche de l'écran (contenant les dossiers <samp>ansel</samp>, <samp>AppData</samp>, ...) est le volet de navigation. Il affiche l'arborescence des dossiers du disque dur.</li>
+	<li> La zone à droite du volet de navigation est la zone d'affichage. Elle indique le contenu du dossier courant.
+</ul>
+</p>
+
+<p>
+Modifiez quelques réglages de l'explorateur de fichiers :
+<ul>
+<li> Dans le ruban de l'onglet <samp>Affichage</samp>, cochez la case <samp>Extensions de noms de fichiers</samp>.</li>
+<li> Si vous le souhaitez, cliquez sur <samp>Options</samp> dans le ruban précédent puis sélectionnez l'onglet <samp>Affichage</samp> et dans la liste <samp>Paramètres avancés</samp>, cochez la case <samp>Afficher le chemin complet dans la barre de titre</samp> et cliquez sur <samp>OK</samp>. Le chemin apparaîtra en haut de la fenêtre. </li>
+</ul>
+</p>
+		<h3>Arborescence des dossiers</h3>
+
+<p>Observez la barre d'adresse, elle contient : <samp> > myself > Documents > Travail > Math > Calculs</samp>.<br>
+Cela signifie que l'on se trouve dans le dossier <samp>Calculs</samp>, on dit que c'est le <em>dossier courant</em>.<br>
+Il est contenu dans le dossier <samp>Math</samp>, on dit que c'est le <em>dossier parent</em> de <samp>Calculs</samp>.<br>
+Le dossier <samp>Math</samp> est contenu dans le dossier <samp>Travail</samp>, sous-dossier du dossier <samp>Documents</samp>, lui-même contenu dans <samp>myself</samp>.
+</p>
+
+<p>
+C'est confirmé par ce qui est affiché dans la partie gauche de la capture d'écran (sous la barre d'adresse) : 
+<ul>
+	<li>Le dossier grisé est <samp>Calculs</samp>, c'est le dossier courant autrement dit celui dans lequel vous vous trouvez.</li>
+	<li>Il est contenu dans <samp>Math</samp>, lui-même contenu dans <samp> Travail</samp>, ...
+</ul>
+</p>
+
+<p>
+Vous voyez dans la partie droite de la capture d'écran le contenu du dossier courant : le dossier <samp>Calculs</samp> contient les dossiers <samp>Cours</samp> et <samp>Exercices</samp> ainsi que le fichier <samp>demo.txt</samp>.
+</p>
+
+<p>
+Les fichiers et dossiers du disque dur sont présentés comme une <em>arborescence</em> : on se repère dans le disque dur en donnant les dossiers à ouvrir (contenus les uns dans les autres comme des poupées russes) à partir du dossier <samp>myself</samp> pour arriver dans le dossier courant (<samp>Calculs</samp>).<br>
+Vous voyez dans la partie gauche de la capture d'écran que les dossiers se ramifient comme les branches d'un arbre (regardez le dossier <samp>Travail</samp> et ses ramifications ainsi que celles de <samp>Math</samp>).
+</p>
+
+</p>
+L'image ci-dessous indique que le dossier <samp>myself</samp> est contenu dans le dossier <samp>users</samp> qui est stocké dans le disque dur <samp>C:</samp>.
+</p>
+
+		<h3>Chemins des dossiers et des fichiers</h3>
+
+<div class="img-zoom-container" >
+	<img id="image2" src="./img/chemin.png" width="400px" alt="Arborescence">
+	<img id="zoomed2" class="img-zoom-result">
+<script>
+// lancez l’effet de zoom:
+	imageZoom("image2", "zoomed2");
+</script>
+</div>
+
+			<h4>Chemin absolu</h4>
+<p>
+Le <em>chemin</em> du dossier courant est <samp>C:\Users\myself\Documents\Travail\HistoireGeo\Le Monde</samp>.<br>
+Il indique la succession de dossier à ouvrir à partir du disque dur (<samp>C:</samp>) pour arriver au dossier voulu (<samp>Le Monde</samp>).
+</p>
+
+<p>
+Le dossier courant contient le fichier image  <samp>le_monde.jpeg</samp>.<br>
+Le chemin de ce fichier est <samp>C:\Users\myself\Documents\Travail\HistoireGeo\Le Monde\le_monde.jpeg</samp>.
+</p>
+
+<p>
+Un chemin est donc l'<em>adresse</em> du fichier ou du dossier voulu dans le disque dur.<br>
+Les exemples précédents sont des <em>chemins absolus</em> car ils commencent par le nom du disque dur (<samp>C:</samp> ici).
+</p>
+
+<p>
+Une remarque : sous Windows, le séparateur de dossiers et de fichier d'un chemin est <samp>\</samp>. Par contre, sous MacOS et Linux, le séparateur est <samp>/</samp>. 
+
+</p>
+	
+			<h4>Chemin relatif</h4>
+
+<p>
+On peut indiquer l'adresse d'un fichier (ou d'un dossier) à partir d'un autre dossier. Il s'agit alors d'un <em>chemin relatif</em>.<br>
+Pour construire un chemin relatif, on utilise <samp>..\</samp> pour indiquer qu'on remonte d'un niveau (au dossier parent) et <samp>.\</samp> pour indiquer qu'on descend dans le dossier courant.  
+</p>
+<p>
+Imaginez que l'on soit dans le dossier <samp>Calculs</samp> des copies d'écran :
+<ul>
+	<li>Le chemin relatif du fichier <samp>demo.txt</samp> est <samp>.\demo.txt</samp> ou simplement <samp>demo.txt</samp>.</li>
+	<li><samp>.\Cours\facile.pdf</samp> ou simplement <samp>Cours\facile.pdf</samp> est le chemin relatif menant au fichier <br>
+	<div align="center"> <samp>C:\Users\myself\Documents\Travail\Math\Calculs\Cours\facile.pdf</samp></div></li>
+	<li>Le chemin relatif du fichier <samp>le_monde.jpeg</samp> (voir deuxième image) est<br>
+	<div align="center"> <samp>..\..\HistoireGeo\Le Monde\le_monde.jpeg</samp></div>
+	<ul>
+		<li> <samp>..\..\</samp> indique qu'on remonte de deux niveaux à partir du dossier <samp>Calculs</samp> : on arrive donc au dossier <samp>Travail</samp> (qui contient bien le dossier <samp>HistoireGeo</samp>.</li>
+		<li>À partir de là, on ouvre le dossier <samp>HistoireGeo</samp> puis <samp>Le Monde</samp> pour trouver le fichier ciblé.</li>
+	</ul>
+</ul>
+</p>
+	<h2>Manipuler dossiers et fichiers </h2>
+
+		<h3>À la souris</h3>
+
+<p>
+Pour créer des fichiers ou des dossiers, il faut se placer dans le dossier parent et utiliser le menu adapté (ou son ruban) ou se placer sur une partie vide de la zone d'affichage et utiliser un clic droit. 
+</p>
+
+Pour agir sur un ou plusieurs éléments (fichiers ou dossiers) : 
+<ul>
+	<li>il faut sélectionner les éléments à traiter.</li>
+	<ul>
+		<li>La sélection d'un élément d'un dossier se fait en cliquant gauche dessus.</li>
+		<li> Pour sélectionner plusieurs éléments (sélection multiple) d'un même dossier :</li>
+		<ul>
+			<li> Un clic gauche sur un élément puis maintenir la touche <kbd>Ctrl</kbd> enfoncée pendant que vous cliquez gauche sur les autres éléments à sélectionner.</li>
+			<li> Pour sélectionner des éléments contigus il suffit de cliquer sur le premier puis de maintenir la touche <kbd>Alt</kbd> enfoncée pendant que vous cliquez gauche sur le dernier élément. Tous les éléments intermédiaires seront aussi sélectionnés.</li>
+		</ul>
+	</ul>
+	<li>Il faut éventuellement choisir la destination (où coller des éléments) en sélectionnant le dossier cible.
+	<li>Il faut ensuite choisir l'action à effectuer (copier, coller, ...). Vous pouvez utiliser les onglets de la barre de menus et les propositions du ruban ou un clic droit sur la sélection.</li>
+</ul>
+
+		<h3>Raccourcis claviers</h3>
+
+<ul>
+	<li> Ouverture : <br>
+	À partir du bureau (par exemple), cliquez sur <kbd>Windows</kbd> + <kbd>E</kbd> pour ouvrir l’explorateur de fichiers.
+	</li>
+	<li> Navigation : les raccourcis suivants se pratiquent en étant dans une fenêtre de l'explorateur de fichier.</li>
+	<ul>
+		<li> <kbd>Ctrl</kbd> + <kbd>N</kbd>		: Ouverture d'une nouvelle fenêtre de l’explorateur de fichiers</li>
+		<li> <kbd>Ctrl</kbd> + <kbd>W</kbd>		: Fermeture de la fenêtre active</li>
+		<li> <kbd>Ctrl</kbd> + <kbd>F</kbd> ou <kbd>Ctrl</kbd> + <kbd>E</kbd> ou <kbd>F3</kbd>		: Champ de recherche</li>
+		<li> <kbd>Ctrl</kbd> + <kbd>L</kbd> ou <kbd>Alt</kbd> + <kbd>D</kbd> ou <kbd>F4</kbd>		: Sélection du chemin d'accès</li>
+		<li> <kbd>Alt</kbd> + <kbd><b><font size="4.5px">&rarr;</font></b></kbd>		: Aller au dossier suivant</li>
+		<li> <kbd>Alt</kbd> + <kbd><b><font size="4.5px">&larr;</font></b></kbd>		: Aller au dossier précédent</li>
+		<li> <kbd>Alt</kbd> + <kbd><b><font size="4.5px">&uarr;</font></b></kbd>		: Aller au dossier parent</li>
+	</ul>
+	<li>Manipulation des fichiers : les raccourcis suivants agissent dans le dossier courant. 
+	<ul>
+		<li> <kbd>Ctrl</kbd> + <kbd>Maj</kbd> + <kbd>N</kbd>		: Création d'un nouveau dossier</li>
+		<li> <kbd>Ctrl</kbd> + <kbd>N</kbd>		: Création d'un nouveau fichier</li>
+		<li> <kbd>F2</kbd>		: Renommer le fichier ou le dossier sélectionné</li>
+		<li> <kbd>Alt</kbd> + <kbd>Entrée</kbd> (<kbd><b><font size="4.5px">&crarr;</font></b></kbd>)	: Ouverture des propriétés du fichier ou du dossier sélectionné</li>
+		<li> <kbd>Ctrl</kbd> + <kbd>A</kbd>		: Sélection de tout le contenu du dossier courant</li>
+		<li> <kbd>Ctrl</kbd> + <kbd>C</kbd>		: Copie des éléments sélectionnés</li>
+		<li> <kbd>Ctrl</kbd> + <kbd>X</kbd>		: Couper les éléments sélectionnés</li>
+		<li> <kbd>Ctrl</kbd> + <kbd>V</kbd>		: Collage des éléments sélectionnés</li>
+	</ul>
+</li>
+</ul>
+
+	<h2>La pratique </h3>
+<ol class="exr" style="counter-reset:exo 9;">
+<li>
+	<ol>
+	<li>Créez l'arborescence suivante dans votre dossier utilisateur (cliquez sur les <span class="circle"><b>+</b></span>) :
+	<ul class="tree">
+		<li>
+		<details open>
+		<summary>Lycée</summary>
+		<ul>
+			<li>
+			<details>
+			<summary>SNT</summary>
+			<ul>
+				<li>
+				<details>
+				<summary>0-Les_Bases</summary>
+				<ul>
+					<li>
+					<details>
+					<summary>Cours</summary>
+						<ul>
+						<li>0-Bases.html</li>
+						<li>arborescence.png</li>
+						<li>chemin.png</li>
+						<li>cours_style.css</li>
+						</ul>
+					</details>
+					</li>
+				</ul>
+				</details>
+				</li>
+				<li>
+				<details>
+				<summary>1-Le_Web</summary>
+				<ul>
+					<li>
+					<details>
+					<summary>Cours</summary>
+					</details>
+					</li>
+					<li>
+					<details>
+					<summary>Site</summary>
+					<ul>
+						<li><details><summary>img</summary></details></li>
+						<li><details><summary>video</summary></details></li>
+						<li><details><summary>audio</summary></details></li>
+						<li><details><summary>style</summary></details></li>
+					</ul>
+					</details>
+					</li>
+				</ul>
+				</details>
+				</li>
+			</ul>
+			</details>
+			</li>	
+		</ul>
+		</details>
+		</li>
+	</ul>
+	</li>
+	<li>Placez les fichiers <samp>0-Bases.html</samp>, <samp>chemin.png</samp> et <samp>arborescence.png</samp> dans le dossier <samp>0-Les_Bases\Cours</samp>.</li>
+	</ol>
+</li>
+</ol>
+
+<ol class="exr" style="--start:40">
+<li>iuiutiuy</li>
+</ol>
+
+<ol class="exr" start="40">
+<li>iuiutiuy</li>
+</ol>
+
+</body>
+
+</html>
+

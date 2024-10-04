@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+
+<html lang="fr">
+
+
+<head>
+
+	<meta charset="UTF-8">
+
+	<meta name="author" 		content="Votre professeur">
+
+	<meta name="description" 	content="cours sur le web, le html, ...">
+
+	<meta name="keywords"		content="seconde, SNT, Web, HTML, CSS, cours">
+
+	<title>Le Web : le cours</title>
+
+	<link rel="stylesheet" href="../style/cours_style.css" type="text/css">
+ 
+ 	<link rel="stylesheet" href="../style/navigation.css" type="text/css">
+
+</head>
+
+<body>
+
+<nav role="navigation" class="primary-navigation">
+  <ul>
+    <li><a href="../index.html">Accueil</a></li>
+    <li><a href="#">Chapitres &dtrif;</a>
+      <ul class="dropdown">
+        <li><a href="../0-Les Bases/bases.html">Dossiers & fichiers</a></li>
+        <li><a href="#">Le Web</a>
+            <ul class="dropdown">
+                <li><a href="../1-Le Web/web-activite.html">Activité</a></li>
+                <li><a href="../1-Le Web/web-cours.html">Cours</a></li>
+                <li><a href="../1-Le Web/web-pratique.html">Pratique</a></li>
+            </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#">À propos</a>
+            <ul class="dropdown">
+				<li>Site pour la 206-SNT</li>
+            </ul>
+    </li>
+    <li><a href="#">Contact</a>
+            <ul class="dropdown">
+				<li>noname@nofai@nocountry</li>
+            </ul>
+    </li>
+  </ul>
+</nav>
+
+<h1>Chapitre 1<br> Un peu de Web ... sans excès</h1>
+
+	<p>Suivez les liens et lisez les documents liés au fur et à mesure.</p>
+
+	<h2>Le Web</h2>
+
+		<h3>Historique</h3>
+
+		<dl>
+		<dt>1965 : </dt>
+		<dd>Ted Nelson invente le concept (et le terme) d’hypertexte.</dd>
+		<dt>1989 : </dt>
+		<dd>Tim Berners-Lee propose au CERN (Centre Européen de Recherche Nucléaire) un système utilisant l’hypertexte pour faciliter la diffusion et le partage des informations entre les physiciens. Il invente l’URL (adresse d’un document), le HTML (langage d’écriture de document ) et le HTTP (protocole d’échange de fichier). C’est la naissance du Web.</dd>
+		<dt>1993 : </dt>
+		<dd>
+			<ul >
+			<li>Le CERN annonce que la technologie du Web sera gratuite et libre de droit.</li>
+			<li>Marc Andreessen invente Mosaic, le premier navigateur grand public. Il est gratuit (pour un usage non commercial), doté d’une interface graphique (à opposer aux programmes en lignes de commande) et permet de visualiser des images dans le texte d’une page.</li>
+			</ul>
+		<dt>1994 : </dt>
+		<dd>Création du W3C (World Wide Web Consortium) pour standardiser les technologies du Web.</dd>
+		<dt>1995 : </dt>
+		<dd>mise à disposition de technologies pour le développement de site Web interactif (langage JavaScript) et dynamique (langage PHP) ;</dd>
+		<dt>2001 : </dt>
+		<dd>standardisation des pages grâce au DOM (Document Object Model : interface de programmation pour les documents HTML) ;</dd>
+		<dt>2010 : </dt>
+		<dd>mise à disposition de technologies pour le développement d’applications sur mobiles.</dd>
+		</dl>
+
+		<h3>Hyperlien, hypertexte, hypermédia</h3>
+
+		<ul class="in_dl">
+		<li class="in_dl">Un <b><a href="https://developer.mozilla.org/fr/docs/Learn/HTML/Introduction_to_HTML/Creating_hyperlinks">hyperlien</a></b> est un élément d'un document numérique dont l'usage renvoie vers une autre partie du document ou vers un autre document ou d'autres ressources (mail par exemple). 
+		<li>Un <b>hypertexte</b> est un texte, sous forme de fichier numérique, contenant au moins un hyperlien.</li>
+		<li>On élargit la notion d'hypertexte à celle d'<b>hypermédia</b> : une ressource numérique contenant un ou plusieurs médias (texte, image, audio, vidéo, animation, ...) et au moins un hyperlien. 
+		<li> Un <b>hypermédia</b> ou un <b>hypertexte</b> désigne aussi un ensemble de ressources numériques reliées par des hyperliens. Lire ce document <a href="https://www.lumni.fr/article/qu-est-ce-qu-un-lien-hypertexte#containerType=folder&containerSlug=le-html-par-lui-meme-1-2"> dans lequel hypertexte et hypermédia sont synonymes</a>.
+		</ul>
+
+		<h3>Le Web</h3>
+
+		<p> Le <b>Web</b> (ce qui signifie la « toile ») est l’abréviation du <a href="https://www.numerama.com/tech/1162624-quest-ce-que-le-web.html">World Wide Web</a> (la « toile d’araignée mondiale ») abrégé aussi en WWW.</p>
+
+		<p> C'est un système hypertexte (ou plutôt hypermédia) fonctionnant sur Internet.<br>
+		
+		Autrement dit, le Web est l’ensemble des ressources numériques (pages HTML, images, fichiers sons, fichiers vidéos, mail, ...) reliées par des hyperliens et accessibles sur des machines du réseau <a href="https://developer.mozilla.org/fr/docs/Glossary/Internet">Internet</a>. L’utilisateur peut alors naviguer entre ces ressources par l’intermédiaire des liens.</p>
+
+		<p><b>Attention : </b>le Web n’est pas Internet.<br>
+Internet est le réseau mondial formé des divers réseaux informatiques, c'est un ensemble d'ordinateurs, de câbles et de liaisons wi-fi, de protocoles permettant à ces éléments de partager des informations, ...<br>
+
+Divers services se sont développés grâce à Internet, comme le mail (la messagerie életronique), le ftp (le téléchargement de fichiers), les forums de discussions  (newsgroups ou chat irc).<br>
+Le Web n'est qu'un de ces services alors qu'Internet est le réseau informatique sur lequel sont stockées les ressources du Web et par lequel on y accède.<br>
+Pour faciliter le partage de ces ressources, le consortium mondial W3C (World Wide Web Consortium) recommande des normes pour standardiser les technologies du Web (langages HTML et CSS par exemple).
+</p>
+
+	<h2>Accès au Web</h2>
+		
+		<h3>Relation client-serveur</h3>
+
+		Voir <a href="https://openclassrooms.com/fr/courses/1946386-comprendre-le-web/6874729-decouvrez-les-serveurs"> ce lien </a>.
+
+		<h3>Navigateur Web</h3>
+
+		<p>On accède au Web grâce à un <b>navigateur internet</b> : c'est un logiciel qui permet de visualiser une page web (mise en forme) et d'exploiter ses fonctionnalités (ouverture de liens, lecture de vidéo, scripts) en décodant les divers langages utilisés sur cette page (HTML, CSS, Javascript, ...).<br>
+
+	Des navigateurs internet connus sont firefox, chrome, opera, ...</p>
+
+		<h3>URL</h3>
+
+	Voir <a href="https://www.lumni.fr/article/qu-est-ce-qu-une-url#containerType=folder&containerSlug=le-html-par-lui-meme-1-2"> ici</a> et <a href="https://developer.mozilla.org/fr/docs/Learn/Getting_started_with_the_web/HTML_basics">là</a>.
+
+	<h2>Les langages HTML et CSS</h2>
+
+	Les langages <a href="https://www.pierre-giraud.com/html-css-apprendre-coder-cours/definition-utilisation/">HTML et CSS</a> séparent le fond de la forme : 
+	<ul>
+	<li>HTML permet:
+		<ul>
+		<li> de créer des hyperliens,</li>
+		<li> de s'occuper du "fond" du contenu :
+			<ul>
+			<li> structuration logique du texte (titres, sous-titres, paragraphes, tableaux, images, ...).</li>
+			<li> inclusion de ressources multimédias (images, vidéos, sons, animations, ...),</li>
+			</ul>
+		<li> de mettre un minimum en forme le contenu (police, couleur, encadrer, souligner, mettre en gras, ..).</li>
+		</ul>
+	<li>CSS s'occupe de la "forme" en gérant l’esthétique de la page web plus finement que ne le permet le HTML.</li>
+	</ul>
+	
+		<h3>Le langage HTML</h3>
+
+		<p> <a href="https://developer.mozilla.org/fr/docs/Learn/HTML/Introduction_to_HTML/Getting_started">HTML</a> signifie HyperText Markup Language autrement dit "langage de balisage hypertexte".<br> 
+
+		<p> Un texte écrit en utilisant ce langage (on parle de "code HTML") s'enregistre dans un fichier d'extension .html. Ce fichier s'ouvre avec un navigateur internet qui en interprète le contenu, il affiche alors la page web définie par le fichier et mène les actions demandées par l'utilisateur (suivi de lien, lecture de vidéo, ...).<br>
+		</p>
+
+		<p>Pour indiquer commment agir sur un texte (ou une image, ...), on utilise des balises HTML que l'on écrit en général avant (balise ouvrante) et après (balise fermante) l'élément sur lequel on veut agir.<br>
+
+		Par exemple pour mettre en gras du texte on l'encadre par &ltb&gt et &lt/b&gt (il faut indiquer le début et la fin de la mise en gras). Parfois, il n'y a pas de balise de fermeture : pour aller à la ligne on utilise seulement &ltbr&gt (il n'y a pas de balise fermante car on n'indique que le lieu du retour à la ligne). 
+		</p>
+		  
+
+		<h3>Le langage CSS</h2>
+
+	<p> Le langage <a href="https://developer.mozilla.org/fr/docs/Learn/CSS/First_steps/How_CSS_is_structured">CSS</a> ("Cascading Style Sheets" autrement dit "feuilles de style en cascade") permet de mettre en forme une page web bien plus en détail que ne peut le faire le langage HTML.<br>
+    Il permet de définir le style graphique des pages web (couleur des titres de niveau 1, couleur d'arrière-plan, taille des polices des titres ou des paragraphes, présentation des listes, ...).</p>
+
+	<p>Pour faire ceci on écrit du code ressemblant à
+	<pre>
+h1 {
+  color: red;
+  font-size: 5em;
+}
+	</pre>
+<code>h1</code> indique que l'on définit le style des titres de niveau 1.<br>
+Entre les accolades on écrit le code pour définir ce style.<br>
+<code>color:</code> et <code>font-size:</code> indiquent que l'on définit la couleur et la taille de police de ces titres.<br>
+Après <code>:</code> on trouve les valeurs de ces attributs des titres.
+</p>
+
+</body>
+</html>
+

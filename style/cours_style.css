@@ -1,0 +1,348 @@
+		/*--------------------------------------*/
+		/*             page entière             */
+		/*--------------------------------------*/
+
+html {
+	font-size:			20px; 		/* px signifie 'pixels': la taille de base pour la police est de 10 pixels de haut  */
+	font-family:		"Helvetica", serif;
+	background-color:	rgb(36,25,42);
+}
+
+		/*--------------------------------------*/
+		/*          corps du document           */
+		/*--------------------------------------*/
+
+body {
+	margin:				40px 110px 40px 110px;
+	background-color:	rgb(60,43,70);
+	padding: 			0 50px 40px 50px;
+	border:				5px solid rgb(219,230,213);
+	color:				rgb(190,190,190);
+	font-size:			18px;
+	line-height:		1.5;
+}
+
+		/*--------------------------------------*/
+		/*                 lien                 */
+		/*--------------------------------------*/
+
+a {
+	outline: 			none;
+	text-decoration: 	none;
+	text-align: 		center;
+	color: 				rgb(0,0,0);
+	padding:			1px 4px 1px 4px;
+	background-color:	rgb(21,167,167);
+}
+
+		/* lien dans aucun autre état */
+a:link {
+	color: 				rgb(0,0,0);
+	background-color:	rgb(21,167,167);/*palegreen;*/
+}
+
+		/* lien lorsque la cible du lien est présent dans l'historique */
+a:visited {
+	color:				gold;
+	background-color:	rgb(21,21,21);
+	border:				solid 10px;
+	border-color:		red;
+}
+
+		/* lien ayant le focus (atteint par appui sur Tab par exemple */
+a:focus {
+	background-color:	rgb(60,43,70);
+	border:				3px dotted;
+	border-color: 		rgb(31,177,177);
+	color:				white;
+}
+
+		/* lien survolé par le pointeur */
+a:hover {
+	background-color:	rgb(60,43,70);
+	border:				3px solid;
+	border-color: 		rgb(31,177,177);
+	color:				white;
+}
+
+		/* lien sur lequel on clique */
+a:active {
+	background-color:	white;
+	color:				red;
+}
+	
+		/*--------------------------------------*/
+		/*                titres                */
+		/*--------------------------------------*/
+
+		/*----    ----   niveau 1   ----    ----*/
+
+h1 {
+	font-family:	sans-serif;
+	font-size:		60px;
+	text-align:		center;
+	color:			rgb(195,212,185);/*rgb(110,110,220);*/
+	padding:		30px 0px 30px 0px;
+	counter-reset:	section; /* compteur de titre h2*/
+}
+
+h1::first-line {
+	text-transform: uppercase;
+	font-family: 	sans-serif;
+	font-weight: 	300;
+	font-size:		60px;
+}
+
+/* Trait de soulignement */
+h1::after {
+	width:			50%;
+	margin:			25px 0px 0px 25%;
+	content:		'';
+	display:		block;
+	border:			3px solid rgb(195,212,185);/*rgb(100,100,210);*/
+	border-radius:	4px;
+/*	box-shadow:		inset 0 1px 1px rgba(0, 0, 0, .05);*/
+}
+
+		/*----    ----   niveau 2   ----    ----*/
+
+h2 {
+	font-size:					40px;
+	text-align:					left;
+	color:						rgb(195,212,185);/*rgb(110,110,220);*/
+	margin:						40px 0px 40px 0px;
+	padding-left:				auto;
+	text-decoration:			rgb(195,212,185) solid underline 2px;
+	text-underline-position:	under;
+	counter-reset:				subsection; /* compteur de titre h3*/
+}
+
+h2::before {
+	counter-increment:	section;
+	content:			counter(section, upper-roman)"- ";
+}
+
+
+		/*----    ----   niveau 3   ----    ----*/
+
+h3 {
+	font-size:		30px;
+	text-align:		left;
+	color:			rgb(195,212,185);/*rgb(110,110,220);*/
+	margin:			30px 0px 30px 0px;
+	padding-left:	60px;
+	counter-reset:	subsubsection; /* compteur de titre h3*/
+}
+
+h3::before {
+	counter-increment:	subsection;
+	content: 			counter(section, upper-roman)"-"counter(subsection)". ";
+}
+
+		/*----    ----   niveau 4   ----    ----*/
+
+h4 {
+	font-size:		25px;
+	text-align:		left;
+	color:			rgb(195,212,185);/*rgb(110,110,220);*/
+	margin:			20px 0px 20px 0px;
+	padding-left:	120px;
+}
+
+h4::before {
+	counter-increment:	subsubsection;
+	content:			counter(section, upper-roman)"-"counter(subsection)"."counter(subsubsection, lower-latin)". ";
+}
+
+h1+h2 , h2+h3 , h3+h4 {
+	margin-top:	0px;
+}
+
+		/*--------------------------------------*/
+		/*             paragraphes              */
+		/*--------------------------------------*/
+
+/* rien pour l'instant */
+
+		/*--------------------------------------*/
+		/*          liste descriptive           */
+		/*--------------------------------------*/
+
+dl {
+	display:		flex;
+	flex-flow:		row wrap;
+	border:			solid #333;
+	border-width:	1px 1px 0 0;
+}
+
+dt {
+	flex-basis:	8%;
+	padding:	2px 4px;
+	background:	#333;
+	text-align:	right;
+	color:		#fff;
+}
+
+dd {
+	flex-basis:		90%;
+	flex-grow:		1;
+	margin:			0;
+	padding:		2px 4px;
+	border-bottom:	1px solid #333;
+}
+
+.in_dl ul, .in_dl li {
+	margin: 		0px;
+	padding:		0px;
+	padding-left:	0px;
+}
+
+		/*--------------------------------------*/
+		/*         liste non ordonnée :         */
+		/*           espace vertical            */
+		/*--------------------------------------*/
+
+p > ul {
+	margin-block-start:  -0.75em;
+	margin-inline-start: -0.75em;	
+	color:				 rgb(100,0,0);
+}
+
+		/*--------------------------------------*/
+		/*           liste ordonnée :           */
+		/*              exercices               */
+		/*--------------------------------------*/
+
+ol.exr {
+	list-style-type:		none;
+	list-style-position:	inside;
+	margin :				0;
+	padding :				0;
+}
+
+/*ol.exr:first-of-type {
+	counter-reset:	exo;
+}*/
+
+ol.exr > li {
+	list-style: 		none;
+	counter-increment:	exo ;
+	padding-right:		20px;
+	display:			inline-block;
+}
+
+ol.exr  > li::before {
+	content:		"Exercice " counter(exo, decimal)" ";
+	font-weight:	bold;
+}
+
+ol.exr > li+li {
+	margin-top:	20px;
+}
+
+ol.exr + ol.exr {
+	margin-top:	20px;
+}
+
+		/*--------------------------------------*/
+		/*           liste ordonnée :           */
+		/*              activités               */
+		/*--------------------------------------*/
+
+ol.act {
+	list-style-type:		none;
+	list-style-position:	inside;
+	margin :				0;
+	padding :				0;
+}
+
+/*ol.act:first-of-type {
+	counter-reset:	act;
+}*/
+
+ol.act > li {
+	list-style: 		none;
+	counter-increment:	act ;
+	padding-right:		20px;
+	display:			inline-block;
+}
+
+ol.act  > li::before {
+	content:		"Activité " counter(act, decimal)" ";
+	font-weight:	bold;
+}
+
+ol.act > li+li {
+	margin-top:	20px;
+}
+
+ol.act + ol.act {
+	margin-top:	20px;
+}
+
+		/*--------------------------------------*/
+		/*          mise en évidence            */
+		/*--------------------------------------*/
+
+em {
+	font-style:	normal;
+	color: 		rgb(250,230,180);
+}
+
+@supports (-webkit-background-clip: text) {
+	em {
+		background-image:			linear-gradient(90deg, #ff959d, #e5e59b);
+		-webkit-text-fill-color:	transparent;
+		-webkit-background-clip:	text;
+		background-clip:			text;
+		background-size:			300% auto;
+		animation:					textgradient 5s linear infinite;
+	}
+
+@keyframes textgradient {
+	from {background-position: 0 center;}
+    to {background-position:   300% center;}
+	}
+}
+
+		/*--------------------------------------*/
+		/*            nom de fichier            */
+		/*            sortie de code            */
+		/*--------------------------------------*/
+
+samp {
+	font-family:	"Helvetica", monospace;
+	font-weight: 	550;
+	color:		 	rgb(210,210,210);
+}
+
+		/*--------------------------------------*/
+		/*           fragment de code           */
+		/*--------------------------------------*/
+
+/* mieux vaut l'original
+code {
+	font-family:	"Helvetica", monospace;
+	color:			DarkKaki;
+	font-weight: 	700;
+	line-height: 	1;
+	}
+*/
+
+		/*--------------------------------------*/
+		/*           touches clavier            */
+		/*--------------------------------------*/
+
+kbd {
+	font-family:		sans-serif,monospace;
+	display: 			inline-block;
+	font-weight: 		500;
+	line-height: 		1;
+	white-space: 		nowrap;
+	background-color: 	rgb(0,0,0);
+	border-radius: 		5px;
+	padding: 			2px 4px 0;
+	border: 			3px solid black;
+	box-shadow:			0 1px 1px rgba(0, 0, 0, 0.2),
+						1px 2px 2px 0 rgba(255, 255, 255, 0.7) inset;
+}

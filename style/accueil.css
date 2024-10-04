@@ -1,0 +1,146 @@
+		/*--------------------------------------*/
+		/*             page entière             */
+		/*--------------------------------------*/
+
+html {
+	font-size:			20px; 		/* px signifie 'pixels': la taille de base pour la police est de 10 pixels de haut  */
+	font-family:		"Helvetica", serif;
+	background-color:	rgb(36,25,42);
+}
+
+		/*--------------------------------------*/
+		/*          corps du document           */
+		/*--------------------------------------*/
+
+body {
+	margin:				40px 110px 40px 110px;
+	background-color:	rgb(60,43,70);
+	padding: 			0 50px 140px 50px;
+	border:				5px solid rgb(219,230,213);
+	color:				rgb(190,190,190);
+	font-size:			18px;
+	line-height:		1.5;
+	word-wrap:			break-word;
+}
+
+		/*--------------------------------------*/
+		/*                 lien                 */
+		/*--------------------------------------*/
+
+a {
+	outline: 			none;
+	text-decoration: 	none;
+	text-align: 		center;
+	color: 				rgb(195,212,185);
+	padding:			1px 4px 1px 4px;
+	background-color:	rgb(60,43,70);
+	font-family:		sans-serif;
+}
+
+a:link {
+	text-decoration: 	none;
+	color: 				rgb(195,212,185);
+	background-color:	rgb(60,43,70);
+/*	background-color:	rgb(60,43,70);/*rgb(50,130,140);/*palegreen;*/
+}
+
+a:visited {
+	text-decoration: 	none;
+	background-color:	rgb(21,167,167);
+	background-color:	rgb(60,43,70);
+/*	color:				gold;
+	background-color:	rgb(21,21,21);
+	border:				solid 10px;
+	border-color:		red;*/
+	
+}
+
+a:focus {
+	text-decoration: 	none;
+	background-color:	rgb(60,43,70);
+/*	background-color:	rgb(60,43,70);
+/*	border:				3px dotted;
+	border-color: 		rgb(31,177,177);*/
+	color:				white;
+}
+
+a:hover {
+	text-decoration: 	none;
+	background-color:	rgb(60,43,70);
+/*	background-color:	rgb(60,43,70);
+/*	border:				3px solid;
+	border-color: 		rgb(31,177,177);*/
+	color:				white;
+}
+
+a:active {
+	text-decoration: 	none;
+	background-color:	rgb(60,43,70);
+/*	background-color:	white;*/
+	color:				red;
+}
+
+
+		/*--------------------------------------*/
+		/*                Boîtes                */
+		/*--------------------------------------*/
+
+		/*----    ----   niveau 1   ----    ----*/
+
+.box {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+		/*--------------------------------------*/
+		/*                titres                */
+		/*--------------------------------------*/
+
+		/*----    ----   niveau 1   ----    ----*/
+
+h1 {
+	font-family:	sans-serif;
+	font-size:		60px;
+	text-align:		center;
+	color:			rgb(195,212,185);/*rgb(110,110,220);*/
+	padding:		100px 0px 0px 0px;
+	counter-reset:	section; /* compteur de titre h2*/
+}
+
+h1::first-line {
+	text-transform: uppercase;
+	font-family: 	sans-serif;
+	font-weight: 	300;
+	font-size:		60px;
+}
+
+h1::after {	
+	width:			50%;
+	margin:			25px 0px -30px 25%;
+	content:		'';
+	display:		block;
+	border:			2px solid rgb(195,212,185);/*rgb(100,100,210);*/
+	border-radius:	4px;
+/*	box-shadow:		inset 0 1px 1px rgba(0, 0, 0, .05);*/
+}
+
+
+		/*----    ----   niveau 2   ----    ----*/
+
+
+h2 {
+	font-family:				sans-serif;
+	font-size:					40px;
+	font-weight: 				300;
+	text-align:					left;
+	color:						rgb(100,100,150);
+	margin:						40px 0px 40px 0px;
+	padding-left:				auto;
+	text-decoration:			none;
+}
+
+h2::before{content:'';}
+
+h1+h2 {
+	margin-top:	0px;
+}

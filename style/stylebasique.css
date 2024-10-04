@@ -1,0 +1,211 @@
+
+
+/*--------------------------------------*/
+/*====       Tout le document       ====*/
+/*--------------------------------------*/
+
+
+html {
+	font-size:			20px; 		/* px signifie 'pixels': la taille de base pour la police est de 10 pixels de haut  */
+	font-family:		"Helvetica", serif;
+	background-color:	darkmagenta;
+	}
+
+
+/*--------------------------------------*/
+/*====      Corps du document       ====*/
+/*--------------------------------------*/
+
+
+body {
+	width:				auto;
+	margin:				10px 50px;
+	background-color:	DarkSalmon;
+	padding: 			0 20px 20px 20px;
+	border:				5px solid black;
+	color:				blue;
+	font-size:			18px;
+	line-height:		1.5;
+	}
+
+
+/*--------------------------------------*/
+/*====           Code           ====*/
+/*--------------------------------------*/
+
+
+code {
+	font-family:	"Helvetica", monospace;
+	color:			DarkKaki	
+	}
+
+
+/*--------------------------------------*/
+/*====     		 Hyperliens         ====*/
+/*--------------------------------------*/
+
+
+a:link {
+	background:	dimgray;
+	color:		blue;
+	}
+
+a:visited {
+	color:	ivory;
+	}
+
+a:focus {
+	border-bottom:	1px solid;
+	background:		red;
+	}
+
+a:hover {
+	border-bottom:	1px solid;
+	background:		#cdfeaa;
+	}
+
+a:active {
+	background:	#265301;
+	color:		#cdfeaa;
+	}
+
+
+/*--------------------------------------*/
+/*====      Titre de niveau 1       ====*/
+/*--------------------------------------*/
+
+
+h1 {
+	font-size:		60px;
+	text-align:		center;
+	color:			lightnavy;
+	border-bottom:	1px solid #375e97;
+	border-color:	ivory;
+	}
+
+
+/*--------------------------------------*/
+/*====      Titre de niveau 2       ====*/
+/*--------------------------------------*/
+
+
+h2 {
+	font-size:	40px;
+	text-align:	left;
+	color:		lightnavy;
+	
+	}
+
+
+/*--------------------------------------*/
+/*====      Titre de niveau 3       ====*/
+/*--------------------------------------*/
+
+
+h3 {
+	font-size:	30px;
+	text-align:	left;
+	color:		lightnavy;
+	margin:		50px;
+	}
+
+
+/*--------------------------------------*/
+/*====         paragraphes          ====*/
+/*--------------------------------------*/
+
+
+/*p,li {
+	letter-spacing:	1px;
+	}
+*/
+
+
+
+/*--------------------------------------*/
+/*====  Liste ordonnée : activités  ====*/
+/*--------------------------------------*/
+
+
+.act {
+	counter-reset:			item;
+	list-style-type:		none;
+	list-style-position:	inside;
+	margin :				0;
+	padding :				0;
+	}
+
+.act > li::before {
+	content:			"Activité " counter(item, decimal);
+	counter-increment:	item 1;
+	padding-right:		20px;
+	display:			inline-block;
+	font-weight:		bold;
+	}
+
+.act > li+li {
+	margin-top:	20px;
+	}
+
+
+/*--------------------------------------*/
+/*====  Liste ordonnée : exercices  ====*/
+/*--------------------------------------*/
+
+
+.exr {
+	counter-reset:			item;
+	list-style-type:		none;
+	list-style-position:	inside;
+	margin :				0;
+	padding :				0;
+	}
+
+.exr > li::before {
+	content:			"Exercice " counter(item, decimal);
+	counter-increment:	item 1;
+	padding-right:		20px;
+	display:			inline-block;
+	font-weight:		bold;
+	}
+
+.exr > li+li {
+	margin-top:	20px;
+	}
+
+
+/*--------------------------------------*/
+/*====             kbd              ====*/
+/*--------------------------------------*/
+
+
+kbd {
+	background-color: 	lightgray;
+	display: 			inline-block;
+	font-weight: 		700;
+	line-height: 		1;
+	white-space: 		nowrap;
+	}
+
+
+kbd > kbd {
+	border-radius: 		5px;
+	padding: 			2px 4px 0;
+	border: 			3px solid black;
+	box-shadow:
+		0 1px 1px rgba(0, 0, 0, 0.2),
+		0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+	}
+
+
+
+/*--------------------------------------*/
+/*====             samp             ====*/
+/*--------------------------------------*/
+
+
+code {
+	font-family:	"Helvetica", monospace;
+	font-weight: 	bold;
+	line-height: 	1;
+	}

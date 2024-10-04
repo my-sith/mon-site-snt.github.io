@@ -1,0 +1,151 @@
+							<!-- ---------------------------------------------------------------------------------- -->
+							<!-- Le doctype sert à indiquer le type du document 									-->
+							<!-- L'attribut html sert à indiquer au navigateur qu'il s'agit d'un document en HTML5	-->
+							<!-- ---------------------------------------------------------------------------------- -->
+
+<!DOCTYPE html>
+
+
+							<!-- ---------------------------------------------------------------------------------- -->
+							<!-- Les balises htlm délimitent la page web. 											-->
+							<!-- Il faut mettre à l'intérieur tout ce qui fait partie de la page affichée. 			-->
+							<!-- L'attribut lang définit la langue du document. 									-->
+							<!-- ---------------------------------------------------------------------------------- -->
+
+<html lang="fr">
+
+
+	<!-- Cette ligne n'est pas affichée dans la page web. On dit qu'il s'agit d'un commentaire. -->
+	<!-- En général, on s'en sert pour expliquer certains choix de codages faits				-->
+	<!-- Dans la suite, les commentaires comme le bloc suivant expliquent certaines balises 	-->
+
+							<!-- ---------------------------------------------------------------------------------- -->
+							<!-- Pour déclarer un texte en commentaire, il faut l'encadrer entre < !-- (sans
+							  l'espace entre < et !--) et -- > (sans l'espace entre -- et >, devinez pourquoi
+							  j'ai du mettre ces espaces) 															-->
+							<!-- Les balises p délimitent des paragraphes. 											-->
+							<!-- &lt (lt signifie lower than) affiche < et &gt (gt pour greater than) affiche >		-->
+							<!-- La balise br indique un retour à la ligne 											-->
+							<!-- Les balises code délimitent un bout de code ou une url								-->
+							<!-- Les balises kbd permettent d'écrire des touches du clavier							-->
+							<!-- ---------------------------------------------------------------------------------- -->
+	
+	<p>&lt!-- et --&gt sont des balises. Elles ont un certain effet sur le texte qu'elles encadrent : il n'est pas affiché.<br>
+	Si vous ouvrez le document <kbd>le_web_pratique.html</kbd> avec le bloc-note ou si vous ouvrez ce document avec votre navigateur internet et que vous appuyez sur <kbd><kbd>CTRL</kbd>+<kbd>U</kbd></kbd>, vous verrez le code source de la page web et que de nombreux commentaires (non affichés dans la page web) ont déjà été écrits dans le fichier source.</p>
+	
+	<p> Le code source de la page web est le contenu du fichier <kbd>le_web_pratique.html</kbd><samp>le_web_pratique.html</samp> alors que la page web est ce qu'affiche le navigateur lorsqu'il ouvre ce fichier.</p>
+
+
+							<!-- ---------------------------------------------------------------------------------- -->
+							<!-- Les balises head encadrent l'en-tête du document HTML, qui fournit des informations
+	 							 sur la page au navigateur															-->
+							<!-- La balise meta permet de transmettre au navigateur des informations sur le document
+								  (auteur, description, mots-clés, ...)												-->
+							<!-- Les balises title délimitent le titre de l'onglet de la page						-->
+							<!-- La balise link permet de lier une ressource externe à la page HTML. En particulier 
+								 un fichier de style CSS															--> 
+							<!-- Les balises style délimitent des définitions de style CSS.							-->
+							<!-- ---------------------------------------------------------------------------------- -->
+
+<head>
+
+	<meta charset="UTF-8">
+
+	<meta name="author" 		content="Votre professeur">
+
+	<meta name="description" 	content="pratique du html et du css">
+
+	<meta name="keywords"		content="seconde, SNT, Web, HTML, CSS">
+
+	<title>Le Web : pratique du HTML et du CSS</title>
+
+	<link rel="stylesheet" href="../style/stylebasique.css" type="text/css">
+
+	<style>
+		code {color:DeepPink} <!-- on met en rose profond le texte entre les balises code -->
+	</style>
+
+</head>
+
+
+							<!-- ---------------------------------------------------------------------------------- -->
+							<!-- Les balises body encadrent tout ce qui est affiché dans la page web ouverte dans 
+								 le navigateur internet																-->
+							<!-- ---------------------------------------------------------------------------------- -->
+
+<body>
+
+
+							<!-- ---------------------------------------------------------------------------------- -->
+							<!-- Les balises h1 encadrent un titre de niveau 1 (c'est le plus haut niveau de titre)	-->
+							<!-- Les balises h2 encadrent un titre de niveau 2 (c'est le niveau de titre inférieur)	-->
+							<!-- Les balises h3 à h6 encadrent des titres de niveaux de plus en plus faibles		-->
+							<!-- ---------------------------------------------------------------------------------- -->
+
+	<h1> Un titre de niveau 1</h1>
+
+		<p>Un paragraphe de taille modeste <br>
+		avec deux retours à la ligne et du texte de remplissage en latin <br>
+		Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
+		</p>
+
+	<h2> Un titre de niveau 2</h2>
+
+		<p>Un paragraphe ... qui continue ... et continue ...  <br>
+		Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
+		</p>
+
+	<h2> Et encore un titre de niveau 2</h2>
+
+		<p>Cogito ergo sum ...  </p>
+
+	<h3>Un titre de niveau 3</h3>
+
+
+							<!-- ---------------------------------------------------------------------------------- -->
+							<!-- La taille de police du prochain paragraphe, et rien que lui, est modifiée			-->
+							<!-- Les balises a définissent un lien formé d'un texte sur lequel cliquer pour ouvrir 
+								 la page indiquée.
+								 Le texte sur lequel cliquer est encadré par les balises a (par exemple : Songo 21)	
+								 La page à ouvrir est indiquée par son url dans l'attribut href (et entre " et ")	
+								 (par exemple : https://www/songo21.com"											-->
+							<!-- Les balises b (pour bold) mettent en gras le texte encadré							-->
+							<!-- ---------------------------------------------------------------------------------- -->
+
+		<p style="font-size:15px;">Un paragraphe en petit et avec des liens :<br>
+		Auteur: <a href="https://www.songo21.com">Songo 21</a><br>
+		Track: 	<b> Opening para</b><br>
+		Licence:<a href="https://creativecommons.org/licenses/by-sa/2.0/fr/">https://creativecommons.org/licenses/by-sa/2.0/fr/</a><br>
+		Source: <a href="https://www.auboutdufil.com">Télécharger la musique gratuitement</a><br>
+		Les informations précédentes devaient être données pour pouvoir légalement mettre le morceau de musique suivant dans cette page.
+	</p>
+
+							<!-- ---------------------------------------------------------------------------------- -->
+							<!-- Les balises audio permettent de créer un lecteur audio jouant un fichier audio
+								 Pour disposer du lecteur, il faut indiquer l'attribut controls.	
+								 Le fichier musical est défini dans la balise source dans laquelle :
+									 l'attribut src	donne le chemin (relatif) du fichier audio (dans votre 
+									 	arborescence) s'il est dans votre disque dur ou son url s'il est sur le Web, 
+									 l'attribut type donner la nature du fichier (audio et mp3)						-->
+							<!-- ---------------------------------------------------------------------------------- -->
+
+        <audio controls>
+          <source src="./audio/01 mp3-ia801502 us archive.mp3" type="audio/mp3">
+          Your browser does not support the audio element.
+        </audio>
+
+		<p> et un autre fichier audio ... sur le web :</p>
+
+        <audio controls>
+          <source src="https://media.radiofrance-podcast.net/podcast09/21983-18.01.2021-ITEMA_22583402-2017C26360S0271.mp3" type="audio/mp3">
+          Your browser does not support the audio element.
+        </audio>
+
+		<p> et un autre :</p>
+
+        <audio controls>
+          <source src="https://media.radiofrance-podcast.net/podcast09/14312-17.05.2018-ITEMA_21682088-3.mp3" type="audio/mp3">
+          Your browser does not support the audio element.
+        </audio>
+
+</body>
