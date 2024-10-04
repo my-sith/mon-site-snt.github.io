@@ -1,3 +1,3 @@
-# my-sith/snt.github.io
+# my-sith.github.io/snt
 
 Site de test
